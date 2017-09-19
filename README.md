@@ -1,0 +1,2 @@
+# lilliebot
+Pokemon Stats Bot

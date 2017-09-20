@@ -59,6 +59,6 @@ async def on_message(message):
         await client.send_message(message.channel, help())
 
 # Put bot token here
-bot_token = 'MzU5ODQzMjEzOTE1MTkzMzU1.DKM5qA.rr243rfjCTEGCLBGfFPwQQNYBHA'
+bot_token = 
 
 client.run(bot_token)

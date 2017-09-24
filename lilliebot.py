@@ -1,6 +1,6 @@
 import discord
 import asyncio
-from lb_functions import help, stats, format
+from lb_functions import help, stats, format, types, types_print, dual_types, mono
 
 client = discord.Client()
 
@@ -49,16 +49,46 @@ async def on_message(message):
             else:
                 info = stats(2, args[1])
 
-
-            m = format(info)
-            await client.send_message(message.channel, info[0])
-            await client.send_message(message.channel, m)
+            if info != -1:
+                m = format(info)
+                await client.send_message(message.channel, info[0])
+                await client.send_message(message.channel, m)
 
     # Help
     elif message.content.startswith('*help'):
         await client.send_message(message.channel, help())
 
+    # Type
+    elif message.content.startswith('*type'):
+        args = message.content.upper().split()
+        if len(args) != 2:
+            await client.send_message(message.channel, '```Invalid arguments type *help for commands```')
+        else:
+            type_list = types(args[1])
+            if len(type_list) != 0:
+                await client.send_message(message.channel, types_print(type_list))
+
+    # types
+    elif message.content.startswith('*dual'):
+        args = message.content.upper().split()
+        if len(args) != 3:
+            await client.send_message(message.channel, '```Invalid arguments type *help for commands```')
+        else:
+            type_list = dual_types(args[1], args[2])
+            if len(type_list) != 0:
+                await client.send_message(message.channel, types_print(type_list))
+
+    # types
+    elif message.content.startswith('*mono'):
+        args = message.content.upper().split()
+        if len(args) != 2:
+            await client.send_message(message.channel, '```Invalid arguments type *help for commands```')
+        else:
+            type_list = mono(args[1])
+            if len(type_list) != 0:
+                await client.send_message(message.channel, types_print(type_list))
+
 # Put bot token here
-bot_token = 'MzU5ODQzMjEzOTE1MTkzMzU1.DKM5qA.rr243rfjCTEGCLBGfFPwQQNYBHA'
+bot_token = 
 
 client.run(bot_token)

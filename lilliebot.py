@@ -1,6 +1,8 @@
 import discord
 import asyncio
-from lb_functions import help, stats, format, types, types_print, dual_types, mono
+from lb_functions import help, stats, format, types, types_print, dual_types, mono, get_token
+from lb_move_functions import move_info, move_print
+
 
 client = discord.Client()
 
@@ -54,6 +56,26 @@ async def on_message(message):
                 await client.send_message(message.channel, info[0])
                 await client.send_message(message.channel, m)
 
+    # Stats
+    elif message.content.startswith('*move'):
+        args = message.content.upper().split()
+        if len(args) < 2:
+            await client.send_message(message.channel, '```Invalid arguments type *help for commands```')
+        elif len(args) == 3:
+
+            move_name = args[1] + ' ' + args[2]
+            info = move_info(move_name)
+
+            if info != -1:
+                m = move_print(info)
+                await client.send_message(message.channel, m)
+        else:
+            info = move_info(args[1])
+
+            if info != -1:
+                m = move_print(info)
+                await client.send_message(message.channel, m)
+
     # Help
     elif message.content.startswith('*help'):
         await client.send_message(message.channel, help())
@@ -88,7 +110,6 @@ async def on_message(message):
             if len(type_list) != 0:
                 await client.send_message(message.channel, types_print(type_list))
 
-# Put bot token here
-bot_token = 
+bot_token = get_token()
 
 client.run(bot_token)

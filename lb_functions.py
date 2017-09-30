@@ -131,3 +131,13 @@ def spacing(num_spaces):
         count = count + 1
 
     return m
+
+def get_token():
+    token_file = open('token.txt', 'r')
+
+    token = token_file.readline()
+    token = token[0: -1]
+    
+    token_file.close()
+
+    return token

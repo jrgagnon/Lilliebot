@@ -1,7 +1,8 @@
 import discord
 import asyncio
-from lb_functions import help, stats, format, types, types_print, dual_types, mono, get_token
+from lb_functions import help, stats, types, dual_types, mono, mega
 from lb_move_functions import move_info, move_print
+from lb_utilities import get_token, stats_print, types_print, mega_print
 
 
 client = discord.Client()
@@ -52,11 +53,31 @@ async def on_message(message):
                 info = stats(2, args[1])
 
             if info != -1:
-                m = format(info)
+                m = stats_print(info)
                 await client.send_message(message.channel, info[0])
                 await client.send_message(message.channel, m)
 
-    # Stats
+    # Mega
+    elif message.content.startswith('*mega'):
+        args = message.content.upper().split()
+        if len(args) != 2:
+            await client.send_message(message.channel, '```Invalid arguments type *help for commands```')
+        else:
+
+            temp = args[1][0:-1]
+            if args[1].isnumeric():
+                info = mega(1, args[1])
+            elif temp.isnumeric():
+                info = mega(1, args[1])
+            else:
+                info = mega(2, args[1])
+
+            if info != -1:
+                m = mega_print(info)
+                await client.send_message(message.channel, info[0])
+                await client.send_message(message.channel, m)
+
+    # Move
     elif message.content.startswith('*move'):
         args = message.content.upper().split()
         if len(args) < 2:

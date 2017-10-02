@@ -7,12 +7,16 @@ def help():
            '    :posts a picture of that pokemon\n' \
            '- *stats (national dex number) or (pokemon name)\n' \
            '    :gives you the stats asscoiated with that pokemon\n' \
+           '- *stats (national dex number) or (pokemon name)\n' \
+           '    :gives you the stats asscoiated with that mega\n' \
            '- *type (pokemon type)\n' \
            '    :posts names of all pokemon of that type\n' \
            '- *mono (pokemon type)\n' \
            '    :posts names of all pokemon whose type is only type is the requested one\n' \
            '- *dual (pokemon type) (pokemon type)\n' \
            '    :posts names of all pokemon who have that type combination\n' \
+           '- *move (move name)\n' \
+           '    :gives the information asscoiated with that move\n' \
            '- *help\n' \
            '    :can be used at anytime to see these commands again```'
 
@@ -41,26 +45,30 @@ def stats(type, info):
                         return row
                 return -1
 
-def format(info):
-    m = '```Name: '
-    m = m + info[2] + '\n'
-    m = m + 'Number: ' + info[1] + '\n'
-    if info[4] == '$':
-        m = m + 'Type: ' + info[3] + '\n'
-    else:
-        m = m + 'Type: ' + info[3] + ' ' + info[4] + '\n'
-    m = m + 'Evolution: ' + info[5] + '\n'
-    m = m + 'HP: ' + info[6] + '\n'
-    m = m + 'Attack: ' + info[7] + '\n'
-    m = m + 'Defense: ' + info[8] + '\n'
-    m = m + 'Special Attack: ' + info[9] + '\n'
-    m = m + 'Special Defense: ' + info[10] + '\n'
-    m = m + 'Speed: ' + info[11] + '\n'
-    m = m + 'Weaknesses: ' + info[12]
-    for x in info[13:]:
-        m = m + ' ' + x
-    m = m + '```'
-    return m
+#Mega: Takes either a pokemons national dex number or name
+#       Returns the stats of their mega from a csv
+#Type is what row it should search, 1 for number, 2 for name
+#Info is what number or name we are looking for
+def mega(type, info):
+
+    with open('mega_pokemon.csv', newline='') as stats:
+        #read csv, and split on "," the line
+        csv_file = csv.reader(stats, delimiter=",")
+
+        if type == 1:
+            #loop through csv list
+            for row in csv_file:
+                #if current rows 1st value is equal to input, print that row
+                if info == row[type]:
+                    return row
+            return -1
+        else:
+                #loop through csv list
+                for row in csv_file:
+                    #if current rows 1st value is equal to input, print that row
+                    if info.upper() == row[type].upper():
+                        return row
+                return -1
 
 def types(type_req):
 
@@ -104,40 +112,3 @@ def mono(type_req):
             if type_req.upper() == row[3].upper() and row[4] == '$':
                 type_list.append(row[2])
         return type_list
-
-def types_print(type_list):
-
-    count = 0
-    m = '```'
-
-    for item in type_list:
-        if count != 2:
-            m = m + item + spacing(20 - len(item)) + '| '
-            count = count + 1
-        else:
-            m = m + item + '\n'
-            count = count + 1
-
-        if count == 3:
-            count = 0
-    m = m + '```'
-    return m
-
-def spacing(num_spaces):
-    count = 0
-    m = ''
-    while count < num_spaces:
-        m = m + ' '
-        count = count + 1
-
-    return m
-
-def get_token():
-    token_file = open('token.txt', 'r')
-
-    token = token_file.readline()
-    token = token[0: -1]
-    
-    token_file.close()
-
-    return token

@@ -12,11 +12,13 @@ def help():
            '- *type (pokemon type)\n' \
            '    :posts names of all pokemon of that type\n' \
            '- *mono (pokemon type)\n' \
-           '    :posts names of all pokemon whose type is only type is the requested one\n' \
+           '    :posts names of all pokemon whoses only type is that type\n' \
            '- *dual (pokemon type) (pokemon type)\n' \
            '    :posts names of all pokemon who have that type combination\n' \
            '- *move (move name)\n' \
            '    :gives the information asscoiated with that move\n' \
+           '- *ability (ability name)\n' \
+           '    :gives the information asscoiated with that ability\n' \
            '- *help\n' \
            '    :can be used at anytime to see these commands again```'
 
@@ -112,3 +114,16 @@ def mono(type_req):
             if type_req.upper() == row[3].upper() and row[4] == '$':
                 type_list.append(row[2])
         return type_list
+
+def ability(ability_name):
+
+    with open('ability_database.csv', newline='') as stats:
+        #read csv, and split on "," the line
+        csv_file = csv.reader(stats, delimiter=",")
+
+        #loop through csv list
+        for row in csv_file:
+            #if current rows name is equal to input, print that row
+            if ability_name.upper() == row[0].upper():
+                return row
+        return -1

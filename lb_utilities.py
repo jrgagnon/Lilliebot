@@ -77,6 +77,14 @@ def types_print(type_list):
     m = m + '```'
     return m
 
+def ability_print(info):
+    m = '```Ability Name: '
+    m = m + info[0] + '\n' + '\n'
+    m = m + 'Description:' + '\n'
+    m = m + info[1] + '\n' + '\n'
+    m = m + '```'
+    return m
+
 def spacing(num_spaces):
     count = 0
     m = ''

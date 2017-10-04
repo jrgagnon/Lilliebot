@@ -1,8 +1,8 @@
 import discord
 import asyncio
-from lb_functions import help, stats, types, dual_types, mono, mega
+from lb_functions import help, stats, types, dual_types, mono, mega, ability
 from lb_move_functions import move_info, move_print
-from lb_utilities import get_token, stats_print, types_print, mega_print
+from lb_utilities import get_token, stats_print, types_print, mega_print, ability_print
 
 
 client = discord.Client()
@@ -121,7 +121,7 @@ async def on_message(message):
             if len(type_list) != 0:
                 await client.send_message(message.channel, types_print(type_list))
 
-    # types
+    # Dual
     elif message.content.startswith('*dual'):
         args = message.content.upper().split()
         if len(args) != 3:
@@ -131,7 +131,7 @@ async def on_message(message):
             if len(type_list) != 0:
                 await client.send_message(message.channel, types_print(type_list))
 
-    # types
+    # Mono
     elif message.content.startswith('*mono'):
         args = message.content.upper().split()
         if len(args) != 2:
@@ -140,6 +140,26 @@ async def on_message(message):
             type_list = mono(args[1])
             if len(type_list) != 0:
                 await client.send_message(message.channel, types_print(type_list))
+
+    # Ability
+    elif message.content.startswith('*ability'):
+        args = message.content.upper().split()
+        if len(args) < 2:
+            await client.send_message(message.channel, '```Invalid arguments type *help for commands```')
+        elif len(args) == 3:
+
+            ability_name = args[1] + ' ' + args[2]
+            info = ability(ability_name)
+
+            if info != -1:
+                m = ability_print(info)
+                await client.send_message(message.channel, m)
+        else:
+            info = ability(args[1])
+
+            if info != -1:
+                m = ability_print(info)
+                await client.send_message(message.channel, m)
 
 bot_token = get_token()
 

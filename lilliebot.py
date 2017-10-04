@@ -43,8 +43,18 @@ async def on_message(message):
     # Stats
     elif message.content.startswith('*stats'):
         args = message.content.upper().split()
-        if len(args) != 2:
+        if len(args) < 2:
             await client.send_message(message.channel, '```Invalid arguments type *help for commands```')
+        elif len(args) == 3:
+
+            pkmn_name = args[1] + ' ' + args[2]
+            info = stats(2, pkmn_name)
+
+            if info != -1:
+                if info != -1:
+                    m = stats_print(info)
+                    await client.send_message(message.channel, info[0])
+                    await client.send_message(message.channel, m)
         else:
 
             if args[1].isnumeric():

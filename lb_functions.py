@@ -7,7 +7,7 @@ def help():
            '    :posts a picture of that pokemon\n' \
            '- *stats (national dex number) or (pokemon name)\n' \
            '    :gives you the stats asscoiated with that pokemon\n' \
-           '- *stats (national dex number) or (pokemon name)\n' \
+           '- *mega (national dex number) or (pokemon name)\n' \
            '    :gives you the stats asscoiated with that mega\n' \
            '- *type (pokemon type)\n' \
            '    :posts names of all pokemon of that type\n' \

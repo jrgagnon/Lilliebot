@@ -60,8 +60,8 @@ async def on_message(message):
             with open(temporarylocation,'wb') as out: ## Open temporary file as bytes
                 out.write(img.read())                ## Read bytes into file
 
-                await client.send_file(message.channel, temporarylocation)
-                os.remove(temporarylocation) ## Delete file when done
+            await client.send_file(message.channel, temporarylocation)
+            os.remove(temporarylocation) ## Delete file when done
 
     # Stats
     elif message.content.startswith('*stats'):

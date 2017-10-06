@@ -1,3 +1,26 @@
+#Help function: Lets users know what commands this bot recognizes
+def help():
+    return '```Below are the commands recognized\n' \
+           '- *pic (national dex number) or (pokemon name)\n' \
+           '    :posts a picture of that pokemon\n' \
+           '- *stats (national dex number) or (pokemon name)\n' \
+           '    :gives you the stats asscoiated with that pokemon\n' \
+           '- *mega (national dex number) or (pokemon name)\n' \
+           '    :gives you the stats asscoiated with that mega\n' \
+           '- *type (pokemon type)\n' \
+           '    :posts names of all pokemon of that type\n' \
+           '- *mono (pokemon type)\n' \
+           '    :posts names of all pokemon whoses only type is that type\n' \
+           '- *dual (pokemon type) (pokemon type)\n' \
+           '    :posts names of all pokemon who have that type combination\n' \
+           '- *move (move name)\n' \
+           '    :gives the information asscoiated with that move\n' \
+           '- *ability (ability name)\n' \
+           '    :gives the information asscoiated with that ability\n' \
+           '- *help\n' \
+           '    :can be used at anytime to see these commands again```'
+
+#Get the bot token from the token file
 def get_token():
     token_file = open('token.txt', 'r')
 
@@ -8,6 +31,8 @@ def get_token():
 
     return token
 
+# Function that formats the info for posting the stats associated with a pokemon
+# Takes an array of information assciated with a pokemon
 def stats_print(info):
     m = '```Name: '
     m = m + info[2] + '\n'
@@ -35,6 +60,8 @@ def stats_print(info):
     m = m + '```'
     return m
 
+# Function that formats the info for posting the stats associated with a  mega pokemon
+# Takes an array of information assciated with a mega pokemon
 def mega_print(info):
     m = '```Name: '
     if info[1] == '383' or info[1] == '382':
@@ -59,6 +86,8 @@ def mega_print(info):
     m = m + '```'
     return m
 
+# Function that prints a 3 column list of pokemon with an assciated type_one
+# Takes an array of pokemon
 def types_print(type_list):
 
     count = 0
@@ -77,6 +106,8 @@ def types_print(type_list):
     m = m + '```'
     return m
 
+# Function that prints ability information
+# Takes an array of ability information
 def ability_print(info):
     m = '```Ability Name: '
     m = m + info[0] + '\n' + '\n'
@@ -85,6 +116,7 @@ def ability_print(info):
     m = m + '```'
     return m
 
+# Generates a string of spaces the length of the number passed
 def spacing(num_spaces):
     count = 0
     m = ''

@@ -3,9 +3,10 @@ import asyncio
 import requests
 import io
 import os
-from lb_functions import help, stats, types, dual_types, mono, mega, ability
-from lb_move_functions import move_info, move_print
-from lb_utilities import get_token, stats_print, types_print, mega_print, ability_print
+from lb_pokemon import stats, mega
+from lb_functions import types, dual_types, mono, ability
+from lb_moves import move_info, move_print
+from lb_utilities import get_token, stats_print, types_print, mega_print, ability_print, help
 
 
 client = discord.Client()

@@ -1,9 +1,7 @@
 import csv
 
-#Stats: Takes either a pokemons national dex number or name
-#       Returns their stats from a csv
-#Type is what row it should search, 1 for number, 2 for name
-#Info is what number or name we are looking for
+#move_info: take a move name and searchs the database for it
+#move_name is the desired move
 def move_info(move_name):
 
     with open('move_database.csv', newline='') as stats:
@@ -17,6 +15,8 @@ def move_info(move_name):
                 return row
         return -1
 
+# Function that formats the info for posting move info
+# Takes an array of information assciated with a move
 def move_print(info):
     m = '```Move Name: '
     m = m + info[0] + '\n' + '\n'

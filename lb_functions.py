@@ -1,77 +1,7 @@
 import csv
 
-#Help function: Lets users know what commands this bot recognizes
-def help():
-    return '```Below are the commands recognized\n' \
-           '- *pic (national dex number) or (pokemon name)\n' \
-           '    :posts a picture of that pokemon\n' \
-           '- *stats (national dex number) or (pokemon name)\n' \
-           '    :gives you the stats asscoiated with that pokemon\n' \
-           '- *mega (national dex number) or (pokemon name)\n' \
-           '    :gives you the stats asscoiated with that mega\n' \
-           '- *type (pokemon type)\n' \
-           '    :posts names of all pokemon of that type\n' \
-           '- *mono (pokemon type)\n' \
-           '    :posts names of all pokemon whoses only type is that type\n' \
-           '- *dual (pokemon type) (pokemon type)\n' \
-           '    :posts names of all pokemon who have that type combination\n' \
-           '- *move (move name)\n' \
-           '    :gives the information asscoiated with that move\n' \
-           '- *ability (ability name)\n' \
-           '    :gives the information asscoiated with that ability\n' \
-           '- *help\n' \
-           '    :can be used at anytime to see these commands again```'
-
-#Stats: Takes either a pokemons national dex number or name
-#       Returns their stats from a csv
-#Type is what row it should search, 1 for number, 2 for name
-#Info is what number or name we are looking for
-def stats(type, info):
-
-    with open('lillie_bot_database.csv', newline='') as stats:
-        #read csv, and split on "," the line
-        csv_file = csv.reader(stats, delimiter=",")
-
-        if type == 1:
-            #loop through csv list
-            for row in csv_file:
-                #if current rows 1st value is equal to input, print that row
-                if info == row[type]:
-                    return row
-            return -1
-        else:
-                #loop through csv list
-                for row in csv_file:
-                    #if current rows 1st value is equal to input, print that row
-                    if info.upper() == row[type].upper():
-                        return row
-                return -1
-
-#Mega: Takes either a pokemons national dex number or name
-#       Returns the stats of their mega from a csv
-#Type is what row it should search, 1 for number, 2 for name
-#Info is what number or name we are looking for
-def mega(type, info):
-
-    with open('mega_pokemon.csv', newline='') as stats:
-        #read csv, and split on "," the line
-        csv_file = csv.reader(stats, delimiter=",")
-
-        if type == 1:
-            #loop through csv list
-            for row in csv_file:
-                #if current rows 1st value is equal to input, print that row
-                if info == row[type]:
-                    return row
-            return -1
-        else:
-                #loop through csv list
-                for row in csv_file:
-                    #if current rows 1st value is equal to input, print that row
-                    if info.upper() == row[type].upper():
-                        return row
-                return -1
-
+# Searches the database for all pokemon who are part the passed type_req
+# type_req is the type that is desired
 def types(type_req):
 
     with open('lillie_bot_database.csv', newline='') as stats:
@@ -87,6 +17,8 @@ def types(type_req):
                 type_list.append(row[2])
         return type_list
 
+# Searches the database for all pokemon whos types are the ones passed
+# type_one and type_two are the types desired
 def dual_types(type_one, type_two):
     with open('lillie_bot_database.csv', newline='') as stats:
         #read csv, and split on "," the line
@@ -101,6 +33,8 @@ def dual_types(type_one, type_two):
                 type_list.append(row[2])
         return type_list
 
+# Searches the database for all pokemon whos only type is the passed type
+# type_req is the type that is desired
 def mono(type_req):
     with open('lillie_bot_database.csv', newline='') as stats:
         #read csv, and split on "," the line
@@ -115,6 +49,8 @@ def mono(type_req):
                 type_list.append(row[2])
         return type_list
 
+# Searches the database for the passed ability
+# ability_name is the ability that is desired
 def ability(ability_name):
 
     with open('ability_database.csv', newline='') as stats:

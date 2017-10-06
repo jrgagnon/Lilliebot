@@ -57,7 +57,7 @@ async def on_message(message):
             r = requests.get(info[0], stream=True)
             img = io.BytesIO(r.content)
 
-            temporarylocation="test.png"
+            temporarylocation="pokemon.png"
             with open(temporarylocation,'wb') as out: ## Open temporary file as bytes
                 out.write(img.read())                ## Read bytes into file
 
@@ -94,7 +94,7 @@ async def on_message(message):
             #Download Image to temp and Post
             r = requests.get(info[0], stream=True)
             img = io.BytesIO(r.content)
-            temporarylocation="test.png"
+            temporarylocation="pokemon.png"
             with open(temporarylocation,'wb') as out: ## Open temporary file as bytes
                 out.write(img.read())                ## Read bytes into file
 
@@ -136,7 +136,7 @@ async def on_message(message):
             r = requests.get(info[0], stream=True)
             img = io.BytesIO(r.content)
 
-            temporarylocation="test.png"
+            temporarylocation="pokemon.png"
             with open(temporarylocation,'wb') as out: ## Open temporary file as bytes
                 out.write(img.read())                ## Read bytes into file
 

@@ -1,3 +1,5 @@
+import csv
+
 #Help function: Lets users know what commands this bot recognizes
 def help():
     return '```Below are the commands recognized\n' \
@@ -132,6 +134,18 @@ def nature_print(info):
         m = m + info[2] + '\n' + '\n'
     m = m + '```'
     return m
+
+def nature_table_print():
+    with open('databases/mega_pokemon.csv', newline='') as stats:
+        #read csv, and split on "," the line
+        csv_file = csv.reader(stats, delimiter=",")
+
+        #loop through csv list
+        for row in csv_file:
+            #if current rows 1st value is equal to input, print that row
+            if info == row[type]:
+                return row
+
 
 # Generates a string of spaces the length of the number passed
 def spacing(num_spaces):

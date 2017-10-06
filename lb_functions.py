@@ -4,7 +4,7 @@ import csv
 # type_req is the type that is desired
 def types(type_req):
 
-    with open('lillie_bot_database.csv', newline='') as stats:
+    with open('databases/lillie_bot_database.csv', newline='') as stats:
         #read csv, and split on "," the line
         csv_file = csv.reader(stats, delimiter=",")
 
@@ -20,7 +20,7 @@ def types(type_req):
 # Searches the database for all pokemon whos types are the ones passed
 # type_one and type_two are the types desired
 def dual_types(type_one, type_two):
-    with open('lillie_bot_database.csv', newline='') as stats:
+    with open('databases/lillie_bot_database.csv', newline='') as stats:
         #read csv, and split on "," the line
         csv_file = csv.reader(stats, delimiter=",")
 
@@ -36,7 +36,7 @@ def dual_types(type_one, type_two):
 # Searches the database for all pokemon whos only type is the passed type
 # type_req is the type that is desired
 def mono(type_req):
-    with open('lillie_bot_database.csv', newline='') as stats:
+    with open('databases/lillie_bot_database.csv', newline='') as stats:
         #read csv, and split on "," the line
         csv_file = csv.reader(stats, delimiter=",")
 
@@ -53,7 +53,7 @@ def mono(type_req):
 # ability_name is the ability that is desired
 def ability(ability_name):
 
-    with open('ability_database.csv', newline='') as stats:
+    with open('databases/ability_database.csv', newline='') as stats:
         #read csv, and split on "," the line
         csv_file = csv.reader(stats, delimiter=",")
 
@@ -61,5 +61,20 @@ def ability(ability_name):
         for row in csv_file:
             #if current rows name is equal to input, print that row
             if ability_name.upper() == row[0].upper():
+                return row
+        return -1
+
+# Searches for the given nature
+# nature_name is the desired nature
+def nature(nature_name):
+
+    with open('databases/natures.csv', newline='') as stats:
+        #read csv, and split on "," the line
+        csv_file = csv.reader(stats, delimiter=",")
+
+        #loop through csv list
+        for row in csv_file:
+            #if current rows name is equal to input, print that row
+            if nature_name.upper() == row[0].upper():
                 return row
         return -1

@@ -17,6 +17,8 @@ def help():
            '    :gives the information asscoiated with that move\n' \
            '- *ability (ability name)\n' \
            '    :gives the information asscoiated with that ability\n' \
+           '- *nature (nature name)\n' \
+           '    :gives the information asscoiated with that nature\n' \
            '- *help\n' \
            '    :can be used at anytime to see these commands again```'
 
@@ -113,6 +115,21 @@ def ability_print(info):
     m = m + info[0] + '\n' + '\n'
     m = m + 'Description:' + '\n'
     m = m + info[1] + '\n' + '\n'
+    m = m + '```'
+    return m
+
+# Function that prints nature information
+# Takes an array of nature information
+def nature_print(info):
+    m = '```Nature Name: '
+    m = m + info[0] + '\n' + '\n'
+    if info[1] == '$':
+        m = m + 'This Nature does nothing' +  '\n'
+    else:
+        m = m + 'Increased Stat:' + '\n'
+        m = m + info[1] + '\n' + '\n'
+        m = m + 'Decreased Stat:' + '\n'
+        m = m + info[2] + '\n' + '\n'
     m = m + '```'
     return m
 

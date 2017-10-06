@@ -4,7 +4,7 @@ import csv
 #move_name is the desired move
 def move_info(move_name):
 
-    with open('move_database.csv', newline='') as stats:
+    with open('databases/move_database.csv', newline='') as stats:
         #read csv, and split on "," the line
         csv_file = csv.reader(stats, delimiter=",")
 

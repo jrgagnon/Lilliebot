@@ -4,9 +4,9 @@ import requests
 import io
 import os
 from lb_pokemon import stats, mega
-from lb_functions import types, dual_types, mono, ability
+from lb_functions import types, dual_types, mono, ability, nature
 from lb_moves import move_info, move_print
-from lb_utilities import get_token, stats_print, types_print, mega_print, ability_print, help
+from lb_utilities import get_token, stats_print, types_print, mega_print, ability_print, help, nature_print
 
 
 client = discord.Client()
@@ -217,6 +217,17 @@ async def on_message(message):
 
             if info != -1:
                 m = ability_print(info)
+                await client.send_message(message.channel, m)
+
+    # nature
+    elif message.content.startswith('*nature'):
+        args = message.content.upper().split()
+        if len(args) != 2:
+            await client.send_message(message.channel, '```Invalid arguments type *help for commands```')
+        else:
+            info = nature(args[1])
+            if info != -1:
+                m = nature_print(info)
                 await client.send_message(message.channel, m)
 
 bot_token = get_token()

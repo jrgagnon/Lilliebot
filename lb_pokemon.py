@@ -6,7 +6,7 @@ import csv
 #Info is what number or name we are looking for
 def stats(type, info):
 
-    with open('lillie_bot_database.csv', newline='') as stats:
+    with open('databases/lillie_bot_database.csv', newline='') as stats:
         #read csv, and split on "," the line
         csv_file = csv.reader(stats, delimiter=",")
 
@@ -31,7 +31,7 @@ def stats(type, info):
 #Info is what number or name we are looking for
 def mega(type, info):
 
-    with open('mega_pokemon.csv', newline='') as stats:
+    with open('databases/mega_pokemon.csv', newline='') as stats:
         #read csv, and split on "," the line
         csv_file = csv.reader(stats, delimiter=",")
 

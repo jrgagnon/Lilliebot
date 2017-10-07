@@ -83,7 +83,10 @@ async def on_message(message):
         else:
 
             #check to see if a number is passed
+            temp = args[1][0:-1]
             if args[1].isnumeric():
+                info = stats(1, args[1])
+            elif temp.isnumeric():
                 info = stats(1, args[1])
             else:
                 info = stats(2, args[1])

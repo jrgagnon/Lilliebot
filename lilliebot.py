@@ -7,20 +7,13 @@ from lb_pokemon import stats, mega
 from lb_functions import types, dual_types, mono, ability, nature
 from lb_moves import move_info, move_print
 from lb_utilities import get_token, stats_print, types_print, mega_print, ability_print, help, nature_print
-from lb_typeing import Type, generate_type_table, generate_effectiveness, print_effectiveness
+from lb_typeing import Type, generate_type_table
 
 
 client = discord.Client()
 
 type_table = generate_type_table()
-e = generate_effectiveness(type_table, 'Fire', 'Flying')
-# 2x Weak e[0] ^ e[1]
-# 4x Weak e[0] & e[1]
-# 1/2 resistant e[2] ^ e[3]
-# 1/4 resistant e[2] & e[3]
-# immune e[4] ^ e[5]
-m = print_effectiveness(e)
-print(m)
+
 
 @client.event
 async def on_ready():
@@ -108,7 +101,7 @@ async def on_message(message):
                 info = stats(2, args[1])
 
         if info != -1:
-            m = stats_print(info)
+            m = stats_print(info, type_table)
 
             #Download Image to temp and Post
             r = requests.get(info[0], stream=True)
@@ -149,7 +142,7 @@ async def on_message(message):
                 info = mega(2, args[1])
 
         if info != -1:
-            m = mega_print(info)
+            m = mega_print(info, type_table)
 
             #Download Image to temp and Post
             r = requests.get(info[0], stream=True)

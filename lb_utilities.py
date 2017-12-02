@@ -1,4 +1,5 @@
 import csv
+from lb_typeing import print_effectiveness, print_effectiveness_mono, generate_effectiveness, generate_effectiveness_mono
 
 #Help function: Lets users know what commands this bot recognizes
 def help():
@@ -37,39 +38,45 @@ def get_token():
 
 # Function that formats the info for posting the stats associated with a pokemon
 # Takes an array of information assciated with a pokemon
-def stats_print(info):
-    m = '```Name: '
-    m = m + info[2] + '\n'
-    m = m + 'Number: ' + info[1] + '\n'
+def stats_print(info, type_table):
+    m = '```Pokemon: '
+    m = m + info[2]
+    m = m + ' #' + info[1] + '\n'
     if info[4] == '$':
         m = m + 'Type: ' + info[3] + '\n'
     else:
         m = m + 'Type: ' + info[3] + ' ' + info[4] + '\n'
-    m = m + 'Evolution: ' + info[7] + '\n'
+    if info[7] == '':
+        pass
+    else:
+        m = m + 'Evolution: ' + info[7] + '\n'
 
     if info[5] != '$':
         m = m + 'Has Mega: ' + info[5] + '\n'
-    else:
-        m = m + 'Has Mega: No' + '\n'
 
     if info[6] != '$':
         m = m + 'Form Numbers: ' + info[6] + '\n'
 
-    m = m + 'HP: ' + info[8] + '\n'
-    m = m + 'Attack: ' + info[9] + '\n'
-    m = m + 'Defense: ' + info[10] + '\n'
-    m = m + 'Special Attack: ' + info[11] + '\n'
-    m = m + 'Special Defense: ' + info[12] + '\n'
-    m = m + 'Speed: ' + info[13] + '\n'
-    m = m + 'Weaknesses: ' + info[14]
-    for x in info[15:]:
-        m = m + ' ' + x
+    m = m + '\nStats:\n'
+    m = m + '- HP: ' + info[8] + '\n'
+    m = m + '- At: ' + info[9] + '\n'
+    m = m + '- Df: ' + info[10] + '\n'
+    m = m + '- SA: ' + info[11] + '\n'
+    m = m + '- SD: ' + info[12] + '\n'
+    m = m + '- Sp: ' + info[13] + '\n'
+    m = m + '\nEffectiveness:\n'
+    if info[4] == '$':
+        e = generate_effectiveness_mono(type_table, info[3])
+        m = m + print_effectiveness_mono(e)
+    else:
+        e = generate_effectiveness(type_table, info[3], info[4])
+        m = m + print_effectiveness(e)
     m = m + '```'
     return m
 
 # Function that formats the info for posting the stats associated with a  mega pokemon
 # Takes an array of information assciated with a mega pokemon
-def mega_print(info):
+def mega_print(info, type_table):
     m = '```Name: '
     if info[1] == '383' or info[1] == '382':
         m = m + 'Primal ' + info[2] + '\n'
@@ -81,16 +88,24 @@ def mega_print(info):
         m = m + 'Type: ' + info[3] + '\n'
     else:
         m = m + 'Type: ' + info[3] + ' ' + info[4] + '\n'
-    m = m + 'HP: ' + info[5] + '\n'
-    m = m + 'Attack: ' + info[6] + '\n'
-    m = m + 'Defense: ' + info[7] + '\n'
-    m = m + 'Special Attack: ' + info[8] + '\n'
-    m = m + 'Special Defense: ' + info[9] + '\n'
-    m = m + 'Speed: ' + info[10] + '\n'
-    m = m + 'Weaknesses: ' + info[11]
-    for x in info[12:]:
-        m = m + ' ' + x
+
+    m = m + '\nStats:\n'
+    m = m + '- HP: ' + info[5] + '\n'
+    m = m + '- At: ' + info[6] + '\n'
+    m = m + '- Df: ' + info[7] + '\n'
+    m = m + '- SA: ' + info[8] + '\n'
+    m = m + '- SD: ' + info[9] + '\n'
+    m = m + '- Sp: ' + info[10] + '\n'
+
+    m = m + '\nEffectiveness:\n'
+    if info[4] == '$':
+        e = generate_effectiveness_mono(type_table, info[3])
+        m = m + print_effectiveness_mono(e)
+    else:
+        e = generate_effectiveness(type_table, info[3], info[4])
+        m = m + print_effectiveness(e)
     m = m + '```'
+    
     return m
 
 # Function that prints a 3 column list of pokemon with an assciated type_one

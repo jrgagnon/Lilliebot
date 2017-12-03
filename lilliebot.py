@@ -3,7 +3,7 @@ import asyncio
 import requests
 import io
 import os
-from lb_pokemon import stats, mega
+from lb_pokemon import stats, mega, generate_dict, generate_list
 from lb_functions import types, dual_types, mono, ability, nature
 from lb_moves import move_info, move_print
 from lb_utilities import get_token, stats_print, types_print, mega_print, ability_print, help, nature_print
@@ -12,8 +12,14 @@ from lb_typeing import Type, generate_type_table
 
 client = discord.Client()
 
+#Dictionary that contains the Weaknesses, Resistances, Immunities for each type
 type_table = generate_type_table()
 
+#Dictionary that contains the csv info with the pokemons name as the key
+pokedex = generate_dict()
+
+#List that contains the names of the base pokemon
+numbers = generate_list()
 
 @client.event
 async def on_ready():
@@ -50,16 +56,28 @@ async def on_message(message):
 
             #combine the 2 words to make 1 string
             pkmn_name = args[1] + ' ' + args[2]
-            info = stats(2, pkmn_name)
+            try:
+                info = pokedex[pkmn_name]
+            except Exception as e:
+                info = -1
 
         #single word name or number is given
         else:
 
             #check to see if a number is passed
+            temp = args[1][0:-1]
             if args[1].isnumeric():
-                info = stats(1, args[1])
+                try:
+                    info = pokedex[numbers[int(args[1])-1]]
+                except Exception as e:
+                    info = -1
+            elif temp.isnumeric():
+                info = stats(3, args[1])
             else:
-                info = stats(2, args[1])
+                try:
+                    info = pokedex[args[1]]
+                except Exception as e:
+                    info = -1
 
         if info != -1:
             #Download Image to temp and Post
@@ -86,7 +104,10 @@ async def on_message(message):
 
             #combine the 2 words to make 1 string
             pkmn_name = args[1] + ' ' + args[2]
-            info = stats(2, pkmn_name)
+            try:
+                info = pokedex[pkmn_name]
+            except Exception as e:
+                info = -1
 
         #single word name or number is given
         else:
@@ -94,11 +115,17 @@ async def on_message(message):
             #check to see if a number is passed
             temp = args[1][0:-1]
             if args[1].isnumeric():
-                info = stats(1, args[1])
+                try:
+                    info = pokedex[numbers[int(args[1])-1]]
+                except Exception as e:
+                    info = -1
             elif temp.isnumeric():
-                info = stats(1, args[1])
+                info = stats(3, args[1])
             else:
-                info = stats(2, args[1])
+                try:
+                    info = pokedex[args[1]]
+                except Exception as e:
+                    info = -1
 
         if info != -1:
             m = stats_print(info, type_table)

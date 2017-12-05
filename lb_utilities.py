@@ -7,9 +7,9 @@ def help():
            '- *pic (national dex number) or (pokemon name)\n' \
            '    :posts a picture of that pokemon\n' \
            '- *stats (national dex number) or (pokemon name)\n' \
-           '    :gives you the stats asscoiated with that pokemon\n' \
+           '    :gives you the stats associated with that pokemon\n' \
            '- *mega (national dex number) or (pokemon name)\n' \
-           '    :gives you the stats asscoiated with that mega\n' \
+           '    :gives you the stats associated with that mega\n' \
            '- *type (pokemon type)\n' \
            '    :posts names of all pokemon of that type\n' \
            '- *mono (pokemon type)\n' \
@@ -17,11 +17,11 @@ def help():
            '- *dual (pokemon type) (pokemon type)\n' \
            '    :posts names of all pokemon who have that type combination\n' \
            '- *move (move name)\n' \
-           '    :gives the information asscoiated with that move\n' \
+           '    :gives the information associated with that move\n' \
            '- *ability (ability name)\n' \
-           '    :gives the information asscoiated with that ability\n' \
+           '    :gives the information associated with that ability\n' \
            '- *nature (nature name)\n' \
-           '    :gives the information asscoiated with that nature\n' \
+           '    :gives the information associated with that nature\n' \
            '- *help\n' \
            '    :can be used at anytime to see these commands again```'
 
@@ -105,7 +105,7 @@ def mega_print(info, type_table):
         e = generate_effectiveness(type_table, info[3], info[4])
         m = m + print_effectiveness(e)
     m = m + '```'
-    
+
     return m
 
 # Function that prints a 3 column list of pokemon with an assciated type_one

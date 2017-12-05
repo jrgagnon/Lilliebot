@@ -3,7 +3,7 @@ import asyncio
 import requests
 import io
 import os
-from lb_pokemon import stats, mega, generate_dict, generate_list
+from lb_pokemon import forms, mega, generate_dict, generate_list
 from lb_functions import types, dual_types, mono, ability, nature
 from lb_moves import move_info, move_print
 from lb_utilities import get_token, stats_print, types_print, mega_print, ability_print, help, nature_print
@@ -40,9 +40,6 @@ async def on_message(message):
             + 'Type *help for a list of commands```'
         await client.send_message(message.channel, m)
 
-        game = discord.Game(name=u'Get in the Bag Nebby')
-        await client.change_presence(game=game)
-
     # Pic
     elif message.content.startswith('*pic'):
         args = message.content.upper().split()
@@ -72,7 +69,7 @@ async def on_message(message):
                 except Exception as e:
                     info = -1
             elif temp.isnumeric():
-                info = stats(3, args[1])
+                info = forms(args[1])
             else:
                 try:
                     info = pokedex[args[1]]
@@ -120,7 +117,7 @@ async def on_message(message):
                 except Exception as e:
                     info = -1
             elif temp.isnumeric():
-                info = stats(3, args[1])
+                info = forms(args[1])
             else:
                 try:
                     info = pokedex[args[1]]
@@ -155,7 +152,7 @@ async def on_message(message):
 
             #combine the 2 words to make 1 string
             pkmn_name = args[1] + ' ' + args[2]
-            info = stats(2, pkmn_name)
+            info = mega(2, pkmn_name)
 
         #single word name or number is given
         else:

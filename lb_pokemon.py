@@ -24,6 +24,18 @@ def generate_list():
                 numbers.append(row[2].upper())
     return numbers
 
+def forms(info):
+    with open('databases/forms.csv', newline='') as stats:
+        #read csv, and split on "," the line
+        csv_file = csv.reader(stats, delimiter=",")
+
+        for row in csv_file:
+            #if current rows 1st value is equal to input, print that row
+            if info == row[1]:
+                return row
+        return -1
+
+# Depricated: No longer used to reduce the time it takes to find info
 #Stats: Takes either a pokemons national dex number or name
 #       Returns their stats from a csv
 #Type is what row it should search, 1 for number, 2 for name

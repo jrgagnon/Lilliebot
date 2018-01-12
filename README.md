@@ -19,16 +19,22 @@ python3 -m pip install -U requests
 ```
 
 In order to run the bot you need to create a Discord application here
+
 https://discordapp.com/developers/applications/me
+
 Give the app a name and then turn it into a bot user.
-Get the App Bot User Token.
-Now create a text file named token.txt and put your token in it.
-Invite the bot to your server by replacing bot-id in the following URL with your bot's specific client ID,
+
+Once that is done get the App Bot User Token, create a text file named token.txt and put your token in it.
+
+To invite the bot to your server replace bot-id in the following URL with your bot's specific client ID,
 which is also found on the applications page. 
+
 Invite URL: https://discordapp.com/oauth2/authorize?client_id=bot-id&scope=bot&permissions=0
 
-After adding the bot to your server you can run it by typing either 
+After adding the bot to your server you can run it by typing: 
+
 "python3 lilliebot.py"
-in a terminal from the directory that lilliebot was put in.
+
+In a terminal from the directory that lilliebot was put in.
 
 Once running you can type \*help in a text channel to get a list and description of all of Lilliebots commands

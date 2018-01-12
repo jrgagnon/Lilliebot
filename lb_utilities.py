@@ -10,11 +10,11 @@ def help():
            '    :gives you the stats associated with that pokemon\n' \
            '- *mega (national dex number) or (pokemon name)\n' \
            '    :gives you the stats associated with that mega\n' \
-           '- *type (pokemon type)\n' \
-           '    :posts names of all pokemon of that type\n' \
-           '- *mono (pokemon type)\n' \
+           '- *type all (type)\n' \
+           '    :posts names of all pokemon whoses with that type\n' \
+           '- *type (type)\n' \
            '    :posts names of all pokemon whoses only type is that type\n' \
-           '- *dual (pokemon type) (pokemon type)\n' \
+           '- *type (type) (type)\n' \
            '    :posts names of all pokemon who have that type combination\n' \
            '- *move (move name)\n' \
            '    :gives the information associated with that move\n' \

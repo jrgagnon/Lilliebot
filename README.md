@@ -3,9 +3,11 @@
 Lilliebot is a discord bot that can post a range of pokemon information, from base stats to just simply a picture. 
 
 Things to know to get Lilliebot to run
+
 Python 3.x is required to run the bot.
 
 Next Lilliebot has 2 dependencies
+
 First is discord.py which full installation instructions can be found here
 https://github.com/Rapptz/discord.py
 But all that is needed can be installed by running
